@@ -1,0 +1,122 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+:root{
+  --clr-sedans: hsl(31, 77%, 52%);
+  --clr-suvs: hsl(184, 100%, 22%);
+  --clr-luxury: hsl(179, 100%, 13%);
+
+  --clr-neutral-base: hsla(0, 0%, 100%, 0.75); /* For Paragraphs */
+  --clr-neutral-accent: hsl(0, 0%, 95%); /* For background, headings, buttons */
+
+  --fs-base: calc(1rem * 0.9375); /* 15px */
+  --fs-lg: calc(var(--fs-base) * 1.2); /* 18px */
+  --fs-xl: calc(var(--fs-base) * 1.6); /* 24px */
+  --fs-2xl: calc(var(--fs-base) * 1.6); /* 24px */
+  --fs-4xl: calc(var(--fs-base) * 2.4); /* 36px */
+
+  --fw-base: 400;
+  --fw-bold: 700;
+
+  --ff-base: "Lexend Deca", sans-serif;
+  --ff-accent: "Big Shoulders Display", sans-serif;
+
+  --font-base: var(--fw-base) var(--fs-base) var(--ff-base);
+  --font-accent: var(--fw-bold) 40px var(--ff-accent);
+}
+
+img, svg{
+  max-width: 100%;
+  display: block;
+}
+
+main{
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.card__wrapper{
+  display: grid;
+
+  font: var(--font-base);
+  color: var(--clr-neutral-base);
+  margin: 1.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  max-width: 920px;
+}
+
+.card{
+  background-color: var(--inherit-accent);
+  padding: 3rem;
+  display: grid;
+  gap: 2rem;
+  position: relative;
+}
+
+.card__icon::before{
+  content: '';
+  background-image: var(--inherit-svg);
+  display: block;
+  width: 64px;
+  height: 40px;
+}
+
+.card__title{
+  text-transform: uppercase;
+  font: var(--font-accent);
+  color: var(--clr-neutral-accent);
+}
+
+.card__desc{
+  line-height: 1.44rem;
+}
+
+.card__button{
+  width: fit-content;
+  padding: 0.75rem 2rem;
+  border-radius: 100vw;
+  border: none;
+  color: var(--inherit-accent);
+  cursor: pointer;
+}
+
+.card__button:hover{
+  background-color: transparent;
+  color: var(--clr-neutral-base);
+  border: 2px solid var(--clr-neutral-base);
+}
+
+.card[data-type="sedans"]{
+  --inherit-accent: var(--clr-sedans);
+  --inherit-svg: url('../images/icon-sedans.svg');
+}
+
+.card[data-type="suvs"]{
+  --inherit-accent: var(--clr-suvs);
+  --inherit-svg: url('../images/icon-suvs.svg');
+}
+
+.card[data-type="luxury"]{
+  --inherit-accent: var(--clr-luxury);
+  --inherit-svg: url('../images/icon-luxury.svg');
+}
+
+
+@media(min-width: 600px){
+  .card__wrapper{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .card__button{
+    margin-top: 3.5rem;
+  }
+}
